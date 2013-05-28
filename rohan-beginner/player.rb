@@ -9,6 +9,8 @@ class Player
     @warrior = warrior
     if danger_close?
       bang_him_out
+    elsif danger_ahead?
+      boom_headshot
     elsif slightly_hurt? && !taking_damage?
       heal
     elsif captive_close?
@@ -29,11 +31,23 @@ class Player
     @warrior.feel.enemy? || @warrior.feel(:backward).enemy?
   end
 
+  def danger_ahead?
+    (@warrior.look[1].enemy? && !@warrior.feel.captive?) || (@warrior.look(:backward)[1].enemy? && !@warrior.feel.captive?)
+  end
+
   def bang_him_out
     if @warrior.feel.enemy?
       @warrior.attack!
     elsif @warrior.feel(:backward).enemy?
       @warrior.attack!(:backward)
+    end
+  end
+
+  def boom_headshot
+    if @warrior.look[1].enemy?
+      @warrior.shoot!
+    elsif @warrior.look(:backward)[1].enemy?
+      @warrior.shoot!(:backward)
     end
   end
 
