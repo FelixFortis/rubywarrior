@@ -19,6 +19,8 @@ class Player
       heal_up
     elsif captive_close?
       play_da_hero
+    elsif danger_ahead?
+      boom_headshot
     elsif dead_end
       turn_around
     else
@@ -32,6 +34,14 @@ class Player
 
   def danger_close?
     @buns.feel.enemy? || @buns.feel(:right).enemy? || @buns.feel(:left).enemy? || @buns.feel(:backward).enemy?
+  end
+
+  def danger_ahead?
+    @buns.look.enemy? || @buns.look(:right).enemy? || @buns.look(:left).enemy? || @buns.look(:backward).enemy?
+  end
+
+  def boom_headshot
+    @buns.shoot!
   end
 
   def under_attack?
