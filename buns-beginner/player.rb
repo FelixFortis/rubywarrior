@@ -19,9 +19,8 @@ class Player
       heal_up
     elsif captive_close?
       play_da_hero
-    elsif @walls == 0
-      retreat
-      walls
+    elsif dead_end
+      turn_around
     else
       advance
     end
@@ -87,6 +86,14 @@ class Player
     if @buns.feel(:backward).wall?
       @walls = @walls + 1
     end
+  end
+
+  def dead_end
+    @buns.feel.wall?
+  end
+
+  def turn_around
+    @buns.pivot!
   end
 
   def heal_up
