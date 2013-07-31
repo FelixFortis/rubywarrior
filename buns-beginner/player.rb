@@ -1,6 +1,7 @@
 class Player
   def initialize
     @health = 20
+    @walls = 0
   end
 
   def play_turn(warrior)
@@ -10,16 +11,19 @@ class Player
       bang_im_out
     elsif under_attack?
       if badly_injured?
-        @buns.walk!(:backward)
+        retreat
       else
-        @buns.walk!
+        advance
       end
     elsif injured?
-      @buns.rest!
+      heal_up
     elsif captive_close?
       play_da_hero
+    elsif @walls == 0
+      retreat
+      walls
     else
-      @buns.walk!
+      advance
     end
 
     health_update
@@ -69,6 +73,24 @@ class Player
 
   def badly_injured?
     @buns.health < 12
+  end
+
+  def advance
+    @buns.walk!
+  end
+
+  def retreat
+    @buns.walk!(:backward)
+  end
+
+  def walls
+    if @buns.feel(:backward).wall?
+      @walls = @walls + 1
+    end
+  end
+
+  def heal_up
+    @buns.rest!
   end
 
   def health_update
