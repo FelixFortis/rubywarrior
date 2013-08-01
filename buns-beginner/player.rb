@@ -40,14 +40,16 @@ class Player
   end
 
   def danger_ahead?
-    ((@buns.look[1].enemy?            && !@buns.look[0].captive?) ||
-    (@buns.look(:right)[1].enemy?     && !@buns.look(:right)[0].captive?) ||
-    (@buns.look(:left)[1].enemy?      && !@buns.look(:left)[0].captive?) ||
-    (@buns.look(:backward)[1].enemy?  && !@buns.look(:backward)[0].captive?)) ||
-    ((@buns.look[2].enemy?            && !@buns.look[1].captive?) ||
-    (@buns.look(:right)[2].enemy?     && !@buns.look(:right)[1].captive?) ||
-    (@buns.look(:left)[2].enemy?      && !@buns.look(:left)[1].captive?) ||
-    (@buns.look(:backward)[2].enemy?  && !@buns.look(:backward)[1].captive?))
+    #(
+    (@buns.look[1].enemy?            && !@buns.look[0].captive?) ||
+    #(@buns.look(:right)[1].enemy?     && !@buns.look(:right)[0].captive?) ||
+    #(@buns.look(:left)[1].enemy?      && !@buns.look(:left)[0].captive?) ||
+    #(@buns.look(:backward)[1].enemy?  && !@buns.look(:backward)[0].captive?)) ||
+    #(
+    (@buns.look[2].enemy?            && !@buns.look[1].captive?)# ||
+    #(@buns.look(:right)[2].enemy?     && !@buns.look(:right)[1].captive?) ||
+    #(@buns.look(:left)[2].enemy?      && !@buns.look(:left)[1].captive?) ||
+    #(@buns.look(:backward)[2].enemy?  && !@buns.look(:backward)[1].captive?))
   end
 
   def boom_headshot
