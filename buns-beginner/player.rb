@@ -15,12 +15,12 @@ class Player
       else
         advance
       end
+    elsif danger_ahead?
+      boom_headshot
     elsif injured?
       heal_up
     elsif captive_close?
       play_da_hero
-    elsif danger_ahead?
-      boom_headshot
     elsif dead_end
       turn_around
     else
